@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <section className='section-spacing'>
       <div className='flex justify-between pb-[25px]'>
-        <p className='font-[500] text-md text-primary dark:text-black bg-color px-[10px] py-[6px] rounded-2xl'>Overview</p>
+        <p className='font-[500] text-sm text-primary dark:text-black bg-color px-[10px] py-[6px] rounded-2xl'>Overview</p>
         <button className='shared-button'>+ Portfolio</button>
       </div>
 

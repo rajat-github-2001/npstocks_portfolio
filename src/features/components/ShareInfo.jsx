@@ -7,7 +7,7 @@ const ShareInfo = ({ data }) => {
         <div className='flex flex-wrap justify-between'>
           {data.map((item, index) => (
             <div key={index} className={`flex flex-col justify-start gap-[4px] basis-1/2 even:items-end odd:items-start last:mb-0 ${index === data.length - 2 ? '' : 'mb-[24px]'}`}>
-              <p className='text-color'>{item.value}</p>
+              <p className='text-color text-lg font-semibold'>{item.value}</p>
               <p className='text-secondary text-sm font-normal leading-5'>{item.label}</p>
             </div>
           ))}

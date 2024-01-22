@@ -8,11 +8,12 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('dark', darkMode);
   },[darkMode]);
 
   return (
     <>
-      <div>
+      <div className='relative'>
         <nav className="nav-bar">
           <h1 className="font-bold text-lg leading-5 text-color">Portfolio</h1>
           <button className='text-primary border-2 border-primary' onClick={() => setDarkMode(!darkMode)}>{darkMode ? 'Dark' : 'Light'}</button>

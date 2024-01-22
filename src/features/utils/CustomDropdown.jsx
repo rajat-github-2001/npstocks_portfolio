@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const CustomDropdown = ({ options, selectedOption, onSelect }) => {
+const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -26,7 +26,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect }) => {
       </div>
 
       {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-[120px] rounded-md shadow-lg">
+        <div className={`${alignment} absolute  mt-2 w-[120px] rounded-md shadow-lg`}>
           <div className="rounded-md bg-primary shadow-xs">
             <div
               className="py-1"

@@ -24,10 +24,6 @@
     @apply mt-[27px] px-[17px]
   }
 
-  .text-md {
-    @apply text-[14px]
-  }
-
   .font-green {
     @apply text-green text-lg leading-5 font-semibold
   }
@@ -47,6 +43,15 @@
   .button-active {
     @apply text-[#000] font-semibold bg-[#BBD9FB]
   }
+  
+  .bg-color {
+    @apply bg-black dark:bg-primary
+  }
+
+  /* text */
+  .normal-text {
+    @apply text-[16px] font-normal text-color leading-5
+  }
 
   .sub-heading-text {
     @apply font-[600] leading-normal text-lg mb-[12px] dark:text-primary text-black
@@ -56,9 +61,8 @@
     @apply text-black dark:text-primary
   }
 
-  .bg-color {
-    @apply bg-black dark:bg-primary
-  }
+
+  /* gradient */
 
   .buy-gradient-text {
     background: linear-gradient(99deg, #22AB94 -45.68%, #DDFE55 149.19%);
@@ -73,4 +77,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* form */
+  .form-input {
+    @apply text-secondary focus:outline-0 text-[16px] h-[27px] font-medium leading-5 border-b-[1px] border-[#676767] bg-primary bg-opacity-0
+  }
+
+  .form-label-text {
+    @apply text-secondary text-sm font-normal leading-5
+  }
+
+
 }
