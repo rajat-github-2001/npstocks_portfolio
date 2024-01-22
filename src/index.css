@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border list-none p-0 m-0 scroll-smooth;
+  }
+
+  body {
+    @apply dark:bg-[#101920] bg-[#F0F0F0] min-h-screen font-inter;
+  }
+}
+
+@layer utilities {
+
+  /* nav */
+  .nav-bar {
+    @apply flex flex-row justify-between px-[17px] pt-[51px]
+  }
+
+  /* all */
+  .section-spacing {
+    @apply mt-[27px] px-[17px]
+  }
+
+  .text-md {
+    @apply text-[14px]
+  }
+
+  .font-green {
+    @apply text-green text-lg leading-5 font-semibold
+  }
+
+  .font-secondary {
+    @apply text-secondary text-sm font-normal leading-5
+  }
+
+  .font-red {
+    @apply text-red text-lg leading-5 font-semibold
+  }
+
+  .shared-button {
+    @apply dark:text-secondary text-primary text-sm leading-5 font-[500] dark:bg-gray bg-black px-[10px] py-[6px] rounded-2xl active:button-active
+  }
+
+  .button-active {
+    @apply text-[#000] font-semibold bg-[#BBD9FB]
+  }
+
+  .sub-heading-text {
+    @apply font-[600] leading-normal text-lg mb-[12px] dark:text-primary text-black
+  }
+
+  .text-color {
+    @apply text-black dark:text-primary
+  }
+
+  .bg-color {
+    @apply bg-black dark:bg-primary
+  }
+
+  .buy-gradient-text {
+    background: linear-gradient(99deg, #22AB94 -45.68%, #DDFE55 149.19%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .sell-gradient-text {
+    background: linear-gradient(104deg, #E44C4B -13.34%, rgba(255, 145, 165, 0.97) 180.33%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
