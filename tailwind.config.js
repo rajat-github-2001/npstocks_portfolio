@@ -14,6 +14,7 @@ export default {
       'primary': '#FFFFFF',
       'gray': '#FFFFFF14',
       'black': '#000',
+      'red': '#DC143C'
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],

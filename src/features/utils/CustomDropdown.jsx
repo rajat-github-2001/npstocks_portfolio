@@ -26,7 +26,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
       </div>
 
       {isOpen && (
-        <div className={`${alignment} absolute  mt-2 w-[120px] rounded-md shadow-lg`}>
+        <div className={`${alignment} absolute z-10  mt-2 w-[140px] rounded-md shadow-lg`}>
           <div className="rounded-md bg-primary shadow-xs">
             <div
               className="py-1"
@@ -38,7 +38,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
                 <div
                   key={option.value}
                   onClick={() => handleOptionClick(option)}
-                  className={`cursor-pointer block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-secondary focus:outline-none focus:bg-secondary ${option.value === selectedOption.value
+                  className={`cursor-pointer block px-4 py-2 text-sm leading-5 hover:bg-secondary focus:outline-none focus:bg-secondary ${option.value === selectedOption.value
                     ? 'font-bold'
                     : ''
                     }`}

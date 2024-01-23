@@ -14,7 +14,8 @@ const StockDetails = () => {
 
   const navigate = useNavigate();
   const [selectedDropdownOption, setSelectedDropdownOption] = useState(options[0]);
-  const [showFormModal, setShowFormModal] = useState(false);
+  const [showBuyFormModal, setShowBuyFormModal] = useState(false);
+  const [showSellFormModal, setShowSellFormModal] = useState(false);
 
   const darkMode = JSON.parse(localStorage.getItem('dark') || 'false');
 
@@ -27,8 +28,12 @@ const StockDetails = () => {
     // Additional logic when an option is selected
   };
 
-  const buyOrSellButtonClicked = () => {
-    setShowFormModal((prev) => !prev);
+  const buyButtonClicked = () => {
+    setShowBuyFormModal((prev) => !prev);
+  }
+
+  const sellButtonClicked = () => {
+    setShowSellFormModal((prev) => !prev);
   }
 
   return (
@@ -45,8 +50,8 @@ const StockDetails = () => {
       <ShareInfo data={shareInfoDummyData} />
 
       <div className="flex px-[16px] gap-[10px] mb-[40px]">
-        <BuySellButton label="Buy" onClick={buyOrSellButtonClicked}/>
-        <BuySellButton label="Sell" onClick={buyOrSellButtonClicked}/>
+        <BuySellButton label="Buy" onClick={buyButtonClicked}/>
+        <BuySellButton label="Sell" onClick={sellButtonClicked}/>
       </div>
 
       <div className='flex flex-col gap-[10px]'>
@@ -73,12 +78,12 @@ const StockDetails = () => {
         </table>
       </div>
 
-      {showFormModal &&
-        <BuySellForm close={buyOrSellButtonClicked} buyForm={true}/>
+      {showBuyFormModal &&
+        <BuySellForm close={buyButtonClicked} buyForm={true}/>
       }
 
-      {showFormModal && 
-        <BuySellForm close={buyOrSellButtonClicked} buyForm={false}/>
+      {showSellFormModal && 
+        <BuySellForm close={sellButtonClicked} buyForm={false}/>
       }
     </section>
   )

@@ -43,7 +43,7 @@
   .button-active {
     @apply text-[#000] font-semibold bg-[#BBD9FB]
   }
-  
+
   .bg-color {
     @apply bg-black dark:bg-primary
   }
@@ -87,5 +87,20 @@
     @apply text-secondary text-sm font-normal leading-5
   }
 
+  /* Date picker */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
 
+  /* datepicker */
+  .custom-datepicker-wrapper {
+    position: relative;
+  }
+
+  .custom-datepicker-popper {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    transform: translate(0, 8px) !important;
+  }
 }
