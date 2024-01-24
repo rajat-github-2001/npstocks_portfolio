@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SearchDropdown = ({ options, onSelect }) => {
+const SearchDropdown = ({ options, onSelect, selected }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(selected || '');
   const [filteredOption, setFilteredOption] = useState(options);
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    setSearchTerm(selected || '')
+  }, [selected])
+  
 
   const handleSearchChange = (e) => {
     const newSearchTerm = e.target.value;
@@ -20,7 +25,7 @@ const SearchDropdown = ({ options, onSelect }) => {
   }
 
   const handleOptionClick = (option, e) => {
-    e.stopPropagation();
+    e.preventDefault()
     setIsOpen(false);
     onSelect(option);
     setSearchTerm(option);

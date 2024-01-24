@@ -26,7 +26,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
       </div>
 
       {isOpen && (
-        <div className={`${alignment} absolute z-10  mt-2 w-[140px] rounded-md shadow-lg`}>
+        <div className={`${alignment} absolute z-20  mt-2 w-[140px] rounded-md shadow-lg`}>
           <div className="rounded-md bg-primary shadow-xs">
             <div
               className="py-1"

@@ -13,8 +13,7 @@ export default {
       'secondary': '#9BA0A4',
       'primary': '#FFFFFF',
       'gray': '#FFFFFF14',
-      'black': '#000',
-      'red': '#DC143C'
+      'black': '#000'
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],

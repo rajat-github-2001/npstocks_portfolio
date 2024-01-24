@@ -7,20 +7,36 @@ const BuySellForm = ({ close, buyForm }) => {
     { value: 'SECONDARY', label: 'SECONDARY' },
     { value: 'IPO', label: 'IPO' },
     { value: 'FPO', label: 'FPO' },
-    { value: 'RIGHT SHARES', label: 'RIGHT SHARES' },
-    { value: 'BONUS SHARES', label: 'BONUS SHARES' },
-    { value: 'CASH DIVIDEND', label: 'CASH DIVIDEND' },
+    { value: 'RIGHT', label: 'RIGHT SHARES' },
+    { value: 'BONUS', label: 'BONUS SHARES' },
+    { value: 'CASH', label: 'CASH DIVIDEND' },
   ];
 
   const tickerOptions = ['NABIL', 'SBL', 'KBL'];
 
-  const [selectedDropdownOption, setSelectedDropdownOption] = useState(options[0]);
+  const [selectedFormType, setSelectedFormType] = useState(options[0]);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTicker, setSelectedTicker] = useState(null);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [selectedTicker, setSelectedTicker] = useState('');
+  // REACT-HOOK-FORM IS USED HERE
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      company: '',
+      date: null,
+      transactionId: '',
+      qty: 1,
+      price: 0,
+      sebonCommission: 0,
+      dpAmount: 0,
+      brokerCommission: 0,
+      cash: 0
+    }
+  });
 
-  const handleSelect = (option) => {
-    setSelectedDropdownOption(option);
+  const handleFormTypeSelect = (option) => {
+    setSelectedFormType(option);
+    setSelectedTicker('');
+    setSelectedDate(null);
+    reset();
   };
 
   const handleTickerSelect = (option) => {
@@ -28,11 +44,14 @@ const BuySellForm = ({ close, buyForm }) => {
   };
 
   const handleDateChange = (date) => {
-    setSelectedDate(formatedDate);
+    setSelectedDate(date);
   };
 
   const onSubmit = (data) => {
-    const formData = { ...data, company: selectedTicker, date: selectedDate };
+    const formData = { ...data, company: selectedTicker, date: selectedDate, selectedFormType: selectedFormType.value };
+    reset();
+    setSelectedTicker('');
+    setSelectedDate(null);
     console.log(formData);
   };
 
@@ -46,13 +65,13 @@ const BuySellForm = ({ close, buyForm }) => {
       </div>
 
       {buyForm && (
-        <CustomDropdown options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment={'origin-top-left left-0'} />
+        <CustomDropdown options={options} selectedOption={selectedFormType} onSelect={handleFormTypeSelect} alignment={'origin-top-left left-0'} />
       )}
 
       <form className='flex flex-col gap-[24px] mt-[18px]' onSubmit={handleSubmit(onSubmit)}>
         <label className='relative flex flex-col gap-[8px]'>
           <p className='form-label-text'>Company</p>
-          <SearchDropdown options={tickerOptions} onSelect={handleTickerSelect} />
+          <SearchDropdown options={tickerOptions} selected={selectedTicker} onSelect={handleTickerSelect} />
         </label>
 
         <label className="relative flex flex-col gap-[8px]">
@@ -62,46 +81,78 @@ const BuySellForm = ({ close, buyForm }) => {
 
         {buyForm && (
           <>
-            <label className='flex flex-col gap-[8px]'>
-              <p className='form-label-text'>Transaction ID</p>
-              <input type="text" {...register('transactionId')} className='form-input' />
-            </label>
-            <div className='flex gap-[30px]'>
+            {/* secondary */}
+            {(selectedFormType.value === 'SECONDARY') && (
               <label className='flex flex-col gap-[8px]'>
-                <p className='form-label-text'>Qty</p>
-                <input
-                  type="number"
-                  step="1"
-                  {...register('qty', { valueAsNumber: true, validate: { positiveInteger: value => value > 0 && Number.isInteger(value) } })}
-                  className='form-input w-[97px]'
-                />
-                {errors.qty &&
-                  <p className="text-red">Please enter a positive integer for Qty</p>
-                }
+                <p className='form-label-text'>Transaction ID</p>
+                <input type="text" autoComplete='off' {...register('transactionId')} className='form-input' />
               </label>
-
+            )}
+            {(selectedFormType.value === 'CASH') && (
               <label className='flex flex-col gap-[8px]'>
-                <p className='form-label-text'>Price</p>
+                <p className='form-label-text'>Cash (Rs.)</p>
                 <input
                   type="number"
                   step="0.01"
-                  {...register('price', { valueAsNumber: true, validate: { nonNegativeDecimal: value => value >= 0 } })}
-                  className='form-input w-[97px]'
+                  {...register('cash', { valueAsNumber: true, validate: { nonNegativeDecimal: value => value >= 0 } })}
+                  className='form-input w-[97px]' 
                 />
-                {errors.price &&
-                  <p className="text-red">Please enter a non-negative decimal for Price</p>
+                {errors.cash &&
+                  <p className="text-red">Please enter a positive integer for Cash</p>
                 }
               </label>
-            </div>
+            )}
+            {!(selectedFormType.value === 'CASH') &&
+              (<div className='flex gap-[30px]'>
+                {/* secondary, IPO, FPO, rights, bonus shares */}
+                {(selectedFormType.value === 'SECONDARY' ||
+                  selectedFormType.value === 'IPO' ||
+                  selectedFormType.value === 'FPO' ||
+                  selectedFormType.value === 'RIGHT' ||
+                  selectedFormType.value === 'BONUS'
+                ) && (
+                    <label className='flex flex-col gap-[8px]'>
+                      <p className='form-label-text'>Qty</p>
+                      <input
+                        type="number"
+                        step="1"
+                        {...register('qty', { valueAsNumber: true, validate: { positiveInteger: value => value > 0 && Number.isInteger(value) } })}
+                        className='form-input w-[97px]'
+                      />
+                      {errors.qty &&
+                        <p className="text-red">Please enter a positive integer for Qty</p>
+                      }
+                    </label>
+                  )}
+                {/* secondary, IPO, FPO, rights */}
+                {(selectedFormType.value === 'SECONDARY' ||
+                  selectedFormType.value === 'IPO' ||
+                  selectedFormType.value === 'FPO' ||
+                  selectedFormType.value === 'RIGHT') &&
+                  (<label className='flex flex-col gap-[8px]'>
+                    <p className='form-label-text'>Price</p>
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register('price', { valueAsNumber: true, validate: { nonNegativeDecimal: value => value >= 0 } })}
+                      className='form-input w-[97px]'
+                    />
+                    {errors.price &&
+                      <p className="text-red">Please enter a non-negative decimal for Price</p>
+                    }
+                  </label>
+                  )}
+              </div>)}
           </>
         )}
 
+        {/* if sell form */}
         {!buyForm && (
           <div className="flex flex-col mb-[34px]">
             <div className='flex flex-row gap-[69px] mb-[31px]'>
               <label className='flex flex-col gap-[8px]'>
                 <p className='form-label-text'>Transaction ID</p>
-                <input type="text" {...register('transactionId')} className='form-input' />
+                <input type="text" {...register('transactionId')} className='form-input w-[165px]' />
               </label>
 
               <label className='flex flex-col gap-[8px]'>
@@ -125,7 +176,9 @@ const BuySellForm = ({ close, buyForm }) => {
           </div>
         )}
 
-        <div className='flex gap-[30px]'>
+        {(selectedFormType.value === 'SECONDARY') &&
+        (<div className='flex gap-[30px]'>
+          {/* secondary */}
           <label className='flex flex-col gap-[8px]'>
             <p className='form-label-text'>Sebon Commission</p>
             <div className='relative'>
@@ -140,6 +193,7 @@ const BuySellForm = ({ close, buyForm }) => {
             </div>
           </label>
 
+          {/* secondary */}
           <label className='flex flex-col gap-[8px]'>
             <p className='form-label-text mb-5'>DP Amount</p>
             <div className='relative'>
@@ -154,6 +208,7 @@ const BuySellForm = ({ close, buyForm }) => {
             </div>
           </label>
 
+          {/* secondary */}
           <label className='flex flex-col gap-[8px]'>
             <p className='form-label-text'>Broker Commission</p>
             <div className='relative'>
@@ -167,7 +222,7 @@ const BuySellForm = ({ close, buyForm }) => {
               <img src="/src/assets/icons/Edit.svg" alt="edit" className='absolute right-[8px] top-[5px] bottom-[6px]' />
             </div>
           </label>
-        </div>
+        </div>)}
 
         <div className='flex flex-col gap-[11px] mt-[10px] dark:bg-[#FFFFFF14] bg-[#F0F0F0] rounded-2xl px-[24px] py-[16px]'>
           <div className='flex flex-row justify-between'>

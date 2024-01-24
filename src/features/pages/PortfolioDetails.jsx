@@ -42,7 +42,7 @@ const PortfolioDetails = () => {
     <section className='section-spacing'>
       <div className='flex justify-between items-center pb-[25px]'>
         <button className='shared-button' onClick={navigateBack}>Back to Overview</button>
-        <CustomDropdown options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} />
+        <CustomDropdown options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0'/>
       </div>
 
       <ValueGains data={portfolioDetailsDummyData} />
