@@ -47,3 +47,13 @@ export const shareInfoDummyData = [
   {label: 'Avg Cost', value: '451.91'},
   {label: 'Cost Basis', value: '45.32 lacs'},
 ]
+
+export const transactionDummyData = [
+  {type: { value : 'SECONDARY', label: 'SECONDARY' }, company: 'Agriculture Developent Bank (ADBL)', date: '15/10/2023', transactionId: '1234567', qty: 10, price: 257.10, sebonCommission: 10, dpAmount: 257, brokerCommission: 257, cash: 0, totalAmount: 2605.67, costPerShare: 260.57,},
+  {type: { value: 'IPO', label: 'IPO' }, company: 'Agriculture Developent Bank (ADBL)', date: '16/10/2023', transactionId: '12385867', qty: 11, price: 290.10, sebonCommission: 0, dpAmount: 0, brokerCommission: 0, cash: 0, totalAmount: 0, costPerShare: 0},
+  {type: { value: 'FPO', label: 'FPO' }, company: 'Agriculture Developent Bank (ADBL)', date: '16/10/2022', transactionId: '1123867', qty: 9, price: 190.10, sebonCommission: 0, dpAmount: 0, brokerCommission: 0, cash: 0, totalAmount: 0, costPerShare: 0},
+  {type: { value: 'RIGHT', label: 'RIGHT SHARES' }, company: 'Agriculture Developent Bank (ADBL)', date: '16/10/2021', transactionId: '345867', qty: 6, price: 800.10, sebonCommission: 0, dpAmount: 0, brokerCommission: 0, cash: 0, totalAmount: 0, costPerShare: 0},
+  {type: { value: 'BONUS', label: 'BONUS SHARES' }, company: 'Agriculture Developent Bank (ADBL)', date: '16/10/2021', transactionId: '345867', qty: 6, price: 800.10, sebonCommission: 0, dpAmount: 0, brokerCommission: 0, cash: 0, totalAmount: 0, costPerShare: 0},
+  {type: { value: 'CASH', label: 'CASH DIVIDEND' }, company: 'Agriculture Developent Bank (ADBL)', date: '10/10/2023', transactionId: '34580', qty: 20, price: 700.10, sebonCommission: 0, dpAmount: 0, brokerCommission: 0, cash: 1000, totalAmount: 0, costPerShare: 0},
+  {type: { value: 'SELL', label: 'SELL' }, company: 'Agriculture Developent Bank (ADBL)', date: '10/10/2022', transactionId: '3450900', qty: 0, price: 800.10, sebonCommission: 100, dpAmount: 123, brokerCommission: 343, cash: 0, totalAmount: 0, costPerShare: 0},
+]
