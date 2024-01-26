@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { ValueGains, ShareInfo, BuySellButton, BuySellForm } from '../components';
 import { useNavigate } from 'react-router';
 import { CustomDropdown } from '../utils';
+import { useTheme } from '../../contexts/ThemeContext';
 import { stockDetailsDummyData, shareInfoDummyData, transactionDummyData } from '../../api/dummyDatas';
 
 const StockDetails = () => {
@@ -18,6 +19,7 @@ const StockDetails = () => {
   const [showSellFormModal, setShowSellFormModal] = useState(false);
   const [formData, setFormData] = useState(null);
   const [isFormEditing, setIsFormEditing] = useState(false);
+  const { darkMode } = useTheme();
 
   const navigateToPortfolioDetails = () => {
     navigate('/portfolioDetails');
@@ -42,7 +44,7 @@ const StockDetails = () => {
   const transactionRowClicked = (item) => {
     setIsFormEditing(true);
     setFormData(item);
-    if(item.type.label !== 'SELL') {
+    if (item.type.label !== 'SELL') {
       setShowBuyFormModal(true)
     } else {
       setShowSellFormModal(true);
@@ -53,10 +55,10 @@ const StockDetails = () => {
     <section className='section-spacing'>
       <div className='flex flex-row justify-between items-center pb-[25px]'>
         <div onClick={navigateToPortfolioDetails} className='flex flex-row justify-center items-center gap-[12px]'>
-          <img src="/src/assets/icons/LeftArrow.svg" alt="arrow" />
+          <img src={`/src/assets/icons/${darkMode ? 'LeftArrowWhite.svg' : 'LeftArrowBlack.svg'}`} className='text-red' alt="arrow" />
           <p className='text-black dark:text-primary text-lg font-bold leading-5'>Fam</p>
         </div>
-        <CustomDropdown options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0' />
+        <CustomDropdown iconName={darkMode ? 'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0' />
       </div>
 
       <ValueGains data={stockDetailsDummyData} margin='mb-[8px]' />
@@ -94,11 +96,11 @@ const StockDetails = () => {
       </div>
 
       {showBuyFormModal &&
-        <BuySellForm close={buyButtonClicked} buyForm={true} data={formData} isEditing={isFormEditing} />
+        <BuySellForm darkMode={darkMode} close={buyButtonClicked} buyForm={true} data={formData} isEditing={isFormEditing} />
       }
 
       {showSellFormModal &&
-        <BuySellForm close={sellButtonClicked} buyForm={false} data={formData} isEditing={isFormEditing} />
+        <BuySellForm darkMode={darkMode} close={sellButtonClicked} buyForm={false} data={formData} isEditing={isFormEditing} />
       }
     </section>
   )

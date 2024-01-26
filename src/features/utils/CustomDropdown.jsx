@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
+const CustomDropdown = ({ options, selectedOption, onSelect, alignment, iconName }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -18,10 +18,10 @@ const CustomDropdown = ({ options, selectedOption, onSelect, alignment }) => {
         <button
           type="button"
           onClick={handleToggle}
-          className='flex items-center gap-[10px] px-[10px] py-[6px] text-sm font-semibold leading-normal text-black bg-primary rounded-2xl'
+          className='flex items-center gap-[10px] px-[10px] py-[6px] text-sm font-semibold leading-normal text-primary bg-black dark:text-black dark:bg-primary rounded-2xl'
         >
           {selectedOption.label}
-          <img src="/src/assets/icons/Down.png" alt="down" />
+          <img src={`/src/assets/icons/${iconName}`} alt="down" />
         </button>
       </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ValueGains } from '../components';
 import { portfolioDetailsDummyData } from '../../api/dummyDatas';
 import { stocksData } from '../../api/dummyDatas';
+import { useTheme } from '../../contexts/ThemeContext';
 import { useNavigate } from 'react-router';
 import { CustomRadioButton, CustomDropdown } from '../utils';
 
@@ -15,6 +16,7 @@ const PortfolioDetails = () => {
   const [isPercentage, setIsPercentage] = useState(stocksData.isPercentage);
   const [selectedOption, setSelectedOption] = useState('%');
   const [selectedDropdownOption, setSelectedDropdownOption] = useState(options[0]);
+  const { darkMode } = useTheme();
 
   const handleSelect = (option) => {
     setSelectedDropdownOption(option);
@@ -42,7 +44,7 @@ const PortfolioDetails = () => {
     <section className='section-spacing'>
       <div className='flex justify-between items-center pb-[25px]'>
         <button className='shared-button' onClick={navigateBack}>Back to Overview</button>
-        <CustomDropdown options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0'/>
+        <CustomDropdown iconName={darkMode ?  'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0'/>
       </div>
 
       <ValueGains data={portfolioDetailsDummyData} />

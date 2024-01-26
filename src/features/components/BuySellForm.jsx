@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CustomDropdown, CustomDatePicker, SearchDropdown } from '../utils';
 
-const BuySellForm = ({ close, buyForm, data, isEditing }) => {
+const BuySellForm = ({ close, buyForm, data, isEditing, darkMode }) => {
   const options = [
     { value: 'SECONDARY', label: 'SECONDARY' },
     { value: 'IPO', label: 'IPO' },
@@ -67,14 +67,18 @@ const BuySellForm = ({ close, buyForm, data, isEditing }) => {
           {buyForm ? 'BUY' : 'SELL'}
         </p>
         <div className='flex flex-row gap-[18px]'>
-          <img src="/src/assets/icons/Pencil.svg" alt="cancel" />
-          <img src="/src/assets/icons/Bin.svg" alt="cancel" className='mr-[13px]' />
+          {isEditing &&
+            <>
+              <img src="/src/assets/icons/Pencil.svg" alt="cancel" />
+              <img src="/src/assets/icons/Bin.svg" alt="cancel" className='mr-[13px]' />
+            </>
+          }
           <img src="/src/assets/icons/Cancel.svg" alt="cancel" onClick={close} />
         </div>
       </div>
 
       {buyForm && (
-        <CustomDropdown options={options} selectedOption={selectedFormType} onSelect={handleFormTypeSelect} alignment={'origin-top-left left-0'} />
+        <CustomDropdown iconName={darkMode ?  'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedFormType} onSelect={handleFormTypeSelect} alignment={'origin-top-left left-0'} />
       )}
 
       <form className='flex flex-col gap-[24px] mt-[18px]' onSubmit={handleSubmit(onSubmit)}>

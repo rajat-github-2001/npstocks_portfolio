@@ -41,7 +41,7 @@ const SearchDropdown = ({ options, onSelect, selected }) => {
         onClick={handleToggleDropdown}
         className='form-input w-[330px]'
       />
-      <img className='absolute right-2 bottom-1' src="/src/assets/icons/Down.svg" alt="down" /> 
+      <img className='absolute right-2 bottom-1' src="/src/assets/icons/DownBlack.svg" alt="down" /> 
 
       {isOpen && (
         <div className="absolute z-10 top-16 w-[330px] left-0 bg-primary rounded-md shadow-md">
