@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { YourPortfolio, ValueGains, AddPortfolio } from '../components';
+import { Button } from '../../components';
+import { YourPortfolio, ValueGains, AddPortfolio } from '../reuseables';
 import { gainsDummyData } from '../../api/dummyDatas';
 import { useNavigate } from 'react-router';
 
@@ -23,7 +24,7 @@ const Home = () => {
     <section className='section-spacing'>
       <div className='flex justify-between pb-[25px]'>
         <p className='font-[500] text-sm text-primary dark:text-black bg-color px-[10px] py-[6px] rounded-2xl'>Overview</p>
-        <button className='portfolio-button' onClick={addPortfolio}>+ Portfolio</button>
+        <Button label='+ Portfolio' onClick={addPortfolio}/>
       </div>
 
       <ValueGains data={gainsDummyData} />

@@ -40,10 +40,6 @@
     @apply dark:text-secondary text-primary text-sm leading-5 font-[500] dark:bg-gray bg-black px-[10px] py-[6px] rounded-2xl active:button-active
   }
 
-  .portfolio-button {
-    @apply dark:text-secondary text-primary text-sm leading-5 font-[500] dark:bg-gray bg-black px-[10px] py-[6px] rounded-2xl;
-  }
-
   .button-active {
     @apply text-[#000] font-normal bg-[#BBD9FB]
   }

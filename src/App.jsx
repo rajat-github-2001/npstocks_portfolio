@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Nav } from './features/components';
+import { Nav } from './features/reuseables';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Home, PortfolioDetails, StockDetails } from './features/pages';
 

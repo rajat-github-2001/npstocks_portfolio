@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ValueGains } from '../components';
+import { Button, RadioButton, NormalDropdown } from '../../components';
+import { ValueGains } from '../reuseables';
 import { portfolioDetailsDummyData } from '../../api/dummyDatas';
 import { stocksData } from '../../api/dummyDatas';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useNavigate } from 'react-router';
-import { CustomRadioButton, CustomDropdown } from '../utils';
 
 const PortfolioDetails = () => {
   const options = [
@@ -43,8 +43,8 @@ const PortfolioDetails = () => {
   return (
     <section className='section-spacing'>
       <div className='flex justify-between items-center pb-[25px]'>
-        <button className='shared-button' onClick={navigateBack}>Back to Overview</button>
-        <CustomDropdown iconName={darkMode ?  'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0'/>
+        <Button label='Back to Overview' onClick={navigateBack} />
+        <NormalDropdown iconName={darkMode ?  'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0'/>
       </div>
 
       <ValueGains data={portfolioDetailsDummyData} />
@@ -53,8 +53,8 @@ const PortfolioDetails = () => {
         <div className='flex flex-row justify-between'>
           <p className='sub-heading-text'>Stocks</p>
           <div className='flex items-center gap-[8px]'>
-            <CustomRadioButton label="%" checked={selectedOption === '%'} onChange={handleOptionChange} value='%' />
-            <CustomRadioButton label="Rs" checked={selectedOption === 'Rs'} onChange={handleOptionChange} value='Rs' />
+            <RadioButton label="%" checked={selectedOption === '%'} onChange={handleOptionChange} value='%' />
+            <RadioButton label="Rs" checked={selectedOption === 'Rs'} onChange={handleOptionChange} value='Rs' />
           </div>
         </div>
 

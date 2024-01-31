@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { ValueGains, ShareInfo, BuySellButton, BuySellForm } from '../components';
+import { BuySellButton, NormalDropdown } from '../../components';
+import { ValueGains, ShareInfo, BuySellForm } from '../reuseables';
 import { useNavigate } from 'react-router';
-import { CustomDropdown } from '../utils';
 import { useTheme } from '../../contexts/ThemeContext';
 import { stockDetailsDummyData, shareInfoDummyData, transactionDummyData } from '../../api/dummyDatas';
 
@@ -58,7 +58,7 @@ const StockDetails = () => {
           <img src={`/src/assets/icons/${darkMode ? 'LeftArrowWhite.svg' : 'LeftArrowBlack.svg'}`} className='text-red' alt="arrow" />
           <p className='text-black dark:text-primary text-lg font-bold leading-5'>Fam</p>
         </div>
-        <CustomDropdown iconName={darkMode ? 'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0' />
+        <NormalDropdown iconName={darkMode ? 'DownBlack.svg': 'DownWhite.svg'} options={options} selectedOption={selectedDropdownOption} onSelect={handleSelect} alignment='origin-top-right right-0' />
       </div>
 
       <ValueGains data={stockDetailsDummyData} margin='mb-[8px]' />
