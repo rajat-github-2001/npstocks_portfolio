@@ -111,7 +111,7 @@ const BuySellForm = ({ close, buyForm, data, isEditing, darkMode }) => {
                   className='form-input w-[97px]'
                 />
                 {errors.cash &&
-                  <p className="text-red">Please enter a positive integer for Cash</p>
+                  <p className="text-red">Please enter a positive value for Cash</p>
                 }
               </label>
             )}
@@ -133,7 +133,7 @@ const BuySellForm = ({ close, buyForm, data, isEditing, darkMode }) => {
                         className='form-input w-[97px]'
                       />
                       {errors.qty &&
-                        <p className="text-red">Please enter a positive integer for Qty</p>
+                        <p className="text-red">Please enter a valid quantity</p>
                       }
                     </label>
                   )}
